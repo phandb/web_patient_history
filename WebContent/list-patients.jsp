@@ -4,7 +4,7 @@
 <head>
 	<title>Patient Tracker App</title>
 	<link type="text/css" rel="stylesheet" href="css/style.css">
-	<link type="text/css" rel="stylesheet" href="css/add-patient-style.css">
+	<!-- link type="text/css" rel="stylesheet" href="css/add-patient-style.css"-->
 </head>
 
 
