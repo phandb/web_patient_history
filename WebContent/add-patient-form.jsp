@@ -5,6 +5,14 @@
 	<title>Add New Patient</title>
 	<link type="text/css" rel="stylesheet" href="css/style.css">
 	<link type="text/css" rel="stylesheet" href="css/add-patient-style.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -39,6 +47,10 @@
 					<tr>
 						<td><label>DOB:</label></td>
 						<td><input type="text" name="date_of_birth"/></td>
+					</tr>
+					<tr>
+						<td><label>Address:</label></td>
+						<td><input type="text" name="patientAddress"/></td>
 					</tr>
 					<tr>
 						<td><label></label></td>
