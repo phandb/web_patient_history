@@ -35,8 +35,7 @@
 					<th>First Name</th>
 					<th>Middle Name</th>
 					<th>Last Name</th>
-					<th>Gender</th>
-					<th>Birth Date</th>
+					
 					<th>Action</th>
 					
 				</tr>
@@ -57,8 +56,7 @@
 						<td> ${tempPatient.firstName} </td>
 						<td> ${tempPatient.middleName} </td>
 						<td> ${tempPatient.lastName} </td>
-						<td> ${tempPatient.gender} </td>
-						<td> ${tempPatient.birthDate} </td>
+						
 						<td> 
 							<a href = "${updateLink}">Update</a>
 							|

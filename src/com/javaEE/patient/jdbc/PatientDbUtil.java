@@ -32,7 +32,7 @@ public class PatientDbUtil {
 		myConn = dataSource.getConnection();
 		
 		//create sql statement
-		String sql = "SELECT patient_id, first_name, middle_name, last_name, gender, date_of_birth "
+		String sql = "SELECT * "
 				+ 	" FROM patients "
 				+ 	"ORDER BY last_name";
 		myStmt = myConn.createStatement();
@@ -48,11 +48,12 @@ public class PatientDbUtil {
 			String firstName = myRs.getString("first_name");
 			String middleName = myRs.getString("middle_name");
 			String lastName = myRs.getString("last_name");
+			String address = myRs.getString("address");
 			String gender = myRs.getString("gender");
 			String birthDate = myRs.getString("date_of_birth");
 			
 			//create new patient object
-			Patient tempPatient = new Patient(id, firstName, middleName, lastName, gender, birthDate);
+			Patient tempPatient = new Patient(id, firstName, middleName, lastName,address, gender, birthDate);
 			
 			//add it to the list of patients
 			patients.add(tempPatient);
@@ -93,8 +94,8 @@ public class PatientDbUtil {
 			
 		// create sql for student
 			String sql = "INSERT INTO patients " // need a white space at the end for concatenation
-						+	"(first_name, middle_name, last_name, gender, date_of_birth) " // need a white space at the end for concatenation
-						+ "VALUES (?, ?, ?, ?, ?)";
+						+	"(first_name, middle_name, last_name, address, gender, date_of_birth) " // need a white space at the end for concatenation
+						+ "VALUES (?, ?, ?, ?, ?, ?)";
 			 
 			myStmt = myConn.prepareStatement(sql);
 			
@@ -102,8 +103,9 @@ public class PatientDbUtil {
 			myStmt.setString(1, thePatient.getFirstName());
 			myStmt.setString(2, thePatient.getMiddleName());
 			myStmt.setString(3, thePatient.getLastName());
-			myStmt.setString(4, thePatient.getGender());
-			myStmt.setString(5, thePatient.getBirthDate());
+			myStmt.setString(4, thePatient.getAddress());
+			myStmt.setString(5, thePatient.getGender());
+			myStmt.setString(6, thePatient.getBirthDate());
 			
 		//execute sql insert
 			myStmt.execute();
@@ -145,11 +147,12 @@ public class PatientDbUtil {
 				String firstName = myRs.getString("first_name");
 				String middleName = myRs.getString("middle_name");
 				String lastName = myRs.getString("last_name");
+				String address = myRs.getString("address");
 				String gender = myRs.getString("gender");
 				String birthDate = myRs.getString("date_of_birth");
 				
 				//create new patient object
-				thePatient = new Patient(patientId, firstName, middleName, lastName, gender, birthDate);
+				thePatient = new Patient(patientId, firstName, middleName, lastName, address,  gender, birthDate);
 			}
 			else {
 				throw new Exception("Could not find patient id: "+ patientId);
@@ -174,7 +177,7 @@ public class PatientDbUtil {
 			
 			//create sql update statement
 			String sql = "UPDATE patients " // need a white space at the end for concatenation
-						+ "SET first_name=?, middle_name=?, last_name=?, gender=?, date_of_birth=? " // need a white space at the end for concatenation
+						+ "SET first_name=?, middle_name=?, last_name=?, address =?, gender=?, date_of_birth=? " // need a white space at the end for concatenation
 						+ "WHERE patient_id=?";
 			
 			//prepare statement
@@ -184,9 +187,10 @@ public class PatientDbUtil {
 			myStmt.setString(1, thePatient.getFirstName());
 			myStmt.setString(2, thePatient.getMiddleName());
 			myStmt.setString(3, thePatient.getLastName());
-			myStmt.setString(4, thePatient.getGender());
-			myStmt.setString(5, thePatient.getBirthDate());
-			myStmt.setInt(6, thePatient.getId());
+			myStmt.setString(4, thePatient.getAddress());
+			myStmt.setString(5, thePatient.getGender());
+			myStmt.setString(6, thePatient.getBirthDate());
+			myStmt.setInt(7, thePatient.getId());
 			
 			//execute sql statement
 			myStmt.execute();

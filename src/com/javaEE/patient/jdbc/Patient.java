@@ -7,6 +7,7 @@ public class Patient {
 	private String firstName;
 	private String middleName;
 	private String lastName;
+	private String address;
 	private String gender;
 	private String birthDate;
 	/**
@@ -17,12 +18,13 @@ public class Patient {
 	 * @param gender
 	 * @param birthDate
 	 */
-	public Patient(int id, String firstName, String middleName, String lastName, String gender, String birthDate) {
+	public Patient(int id, String firstName, String middleName, String lastName,String address, String gender, String birthDate) {
 		//super();
 		this.id = id;
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
+		this.address = address;
 		this.gender = gender;
 		this.birthDate = birthDate;
 	}
@@ -30,14 +32,16 @@ public class Patient {
 	 * @param firstName
 	 * @param middleName
 	 * @param lastName
+	 * @param address
 	 * @param gender
 	 * @param birthDate
 	 */
-	public Patient(String firstName, String middleName, String lastName, String gender, String birthDate) {
+	public Patient(String firstName, String middleName, String lastName, String address, String gender, String birthDate) {
 		//super();
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
+		this.address = address;
 		this.gender = gender;
 		this.birthDate = birthDate;
 	}
@@ -79,6 +83,14 @@ public class Patient {
 	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getGender() {
 		return gender;

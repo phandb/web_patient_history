@@ -95,11 +95,12 @@ public class PatientControllerServlet extends HttpServlet {
 		String firstName = request.getParameter("firstName");
 		String middleName = request.getParameter("middleName");
 		String lastName = request.getParameter("lastName");
+		String address = request.getParameter("address");
 		String gender = request.getParameter("gender");
 		String birthDate = request.getParameter("birthDate");
 		
 		//Create new patient object
-		Patient thePatient = new Patient(id,firstName, middleName, lastName,gender, birthDate);
+		Patient thePatient = new Patient(id,firstName, middleName, lastName, address, gender, birthDate);
 		
 		//perform update on the database
 		patientDbUtil.updatePatient(thePatient);
@@ -130,11 +131,12 @@ public class PatientControllerServlet extends HttpServlet {
 		String firstName = request.getParameter("firstName");
 		String middleName = request.getParameter("middleName");
 		String lastName = request.getParameter("lastName");
+		String address = request.getParameter("address");
 		String gender = request.getParameter("gender");
 		String birthDate = request.getParameter("birthDate");
 		
 		//Create new patient object
-		Patient thePatient = new Patient(firstName, middleName, lastName,gender, birthDate);
+		Patient thePatient = new Patient(firstName, middleName, lastName,address, gender, birthDate);
 		
 		//add the new patient to the database
 		patientDbUtil.addPatient(thePatient);
