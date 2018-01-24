@@ -20,7 +20,7 @@ public class PatientDbUtil {
 	}
 	
 	public List<Patient> getPatients() throws Exception {
-		//
+		//Create a list of patient
 		List<Patient> patients = new ArrayList<>();
 		
 		Connection myConn = null;
@@ -67,7 +67,7 @@ public class PatientDbUtil {
 		}
 		
 	}
-
+	
 	private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 		try {
 			if (myRs !=null) {
@@ -232,4 +232,5 @@ public class PatientDbUtil {
 		
 	}
 
+	
 }

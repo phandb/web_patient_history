@@ -58,6 +58,9 @@ public class PatientControllerServlet extends HttpServlet {
 			case "LOAD":
 				loadPatients(request, response);
 				break;
+			/*case "VIEW":
+				viewPatient(request, response);
+				break;*/
 			case "UPDATE":
 				updatePatients(request, response);
 				break;
@@ -76,6 +79,8 @@ public class PatientControllerServlet extends HttpServlet {
 		
 	}
 	
+	
+
 	private void deletePatients(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		// read the patient id from the form data
@@ -184,8 +189,24 @@ public class PatientControllerServlet extends HttpServlet {
 			throw new ServletException(exc);
 		}
 	}
-
+/*******************************For Prescription*********************************************************
+	private void viewPatient(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//read patient id from form data
+		String thePatientId = request.getParameter("patientId");
+				
+		// get prescriptions of the patient from db util
+		Prescriptions thePrescription =  prescriptionDbUtil.getPrescription(thePatientId);
+				
+		//place prescriptions in the request attribute
+		request.setAttribute("PRESCRIPTION_LIST",thePrescription);
+				
+		//sent to jsp page: view-patient-form.jsp
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/view-patient-form.jsp");
+		dispatcher.forward(request, response);
+		
+	}
 	
+	*******************************************************************************************************/
 
 }
 
