@@ -25,7 +25,7 @@ private  DataSource dataSource;
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		int patientId;
-		
+		int patient_id;
 		try {
 			//convert student id to int
 			patientId = Integer.parseInt(thePatientId);
@@ -34,10 +34,10 @@ private  DataSource dataSource;
 			myConn = dataSource.getConnection();
 			
 			//create sql statement
-			String sql = "SELECT *  "
+			String sql = "SELECT medications.patient_id, medication_name, strength, dosage  "
 							+ " FROM medications "
 							+ " INNER JOIN patients "
-							+ " ON (patients.patient_id=7 AND medications.patient_id = patients.patient_id) ";
+							+ " ON (medications.patient_id = patients.patient_id) ";
 			
 			
 			
@@ -52,19 +52,23 @@ private  DataSource dataSource;
 			myRs = myStmt.executeQuery(sql);
 			
 			//retrieve data from result set row
-			if (myRs.next()){
-				String presName = myRs.getString("medication_name");
-				String presStrength = myRs.getString("strength");
-				String presDosage = myRs.getString("dosage");
-				
-				//create new prescription object
-				Prescriptions tempPrescription = new Prescriptions(patientId, presName, presStrength, presDosage);
-				// Add it to the list of prescription
-				prescriptions.add(tempPrescription);
+			while (myRs.next()){
+				patient_id = myRs.getInt("medications.patient_id");
+				if (patientId==patient_id) {
+					String presName = myRs.getString("medication_name");
+					String presStrength = myRs.getString("strength");
+					String presDosage = myRs.getString("dosage");
+					
+					//create new prescription object
+					Prescriptions tempPrescription = new Prescriptions(patientId, presName, presStrength, presDosage);
+					// Add it to the list of prescription
+					prescriptions.add(tempPrescription);
+				}
 			}
-			else {
-				throw new Exception("Could not find patient id: "+ patientId);
-			}
+			 
+				//throw new Exception("Could not find patient id: "+ patientId);
+			
+			
 		
 		return prescriptions;
 		}

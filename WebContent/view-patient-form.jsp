@@ -40,35 +40,35 @@
 				<c:forEach var="tempPrescription" items="${PRESCRIPTION_LIST}">
 					<tr>
 					
-					<!-- set up an update link for each patient--->
-					<c:url var ="updateLink" value = "PrescriptionControllerServlet">
-						<c:param name="command" value="LOAD"/>
-						<c:param name="patientId" value="${tempPrescription.presId}" />
-					</c:url>
-					
-					<!-- set up a view link for each patient--->
-					<c:url var ="viewLink" value = "PrescriptionControllerServlet">
-						<c:param name="command" value="UPDATE_PRES"/>
-						<c:param name="patientId" value="${tempPrescription.presId}" />
-					</c:url>
-					
-					<!-- set up a link to delete a patient -->
-					<c:url var ="deleteLink" value = "PrescriptionControllerServlet">
-						<c:param name="command" value="DELETE"/>
-						<c:param name="patientId" value="${tempPrescription.presId}" />
-					</c:url>
-					
-						<td> ${tempPrescription.presName} </td>
-						<td> ${tempPrescription.presStrength} </td>
-						<td> ${tempPrescription.presDosage} </td>
+						<!-- set up an update link for each patient--->
+						<c:url var ="updateLink" value = "PrescriptionControllerServlet">
+							<c:param name="command" value="LOAD"/>
+							<c:param name="patientId" value="${tempPrescription.presId}" />
+						</c:url>
 						
-						<td> 
-							<a href = "${updateLink}">Update</a>|
-							<a href = "${viewLink}">View</a> |
-							<a href = "${deleteLink}"
-							onclick="if (!(confirm('Are you sure you want to delete this patient?'))) return false">
-							Delete</a>
-						 </td>
+						<!-- set up a view link for each patient--->
+						<c:url var ="viewLink" value = "PrescriptionControllerServlet">
+							<c:param name="command" value="UPDATE_PRES"/>
+							<c:param name="patientId" value="${tempPrescription.presId}" />
+						</c:url>
+						
+						<!-- set up a link to delete a patient -->
+						<c:url var ="deleteLink" value = "PrescriptionControllerServlet">
+							<c:param name="command" value="DELETE"/>
+							<c:param name="patientId" value="${tempPrescription.presId}" />
+						</c:url>
+						
+							<td> ${tempPrescription.presName} </td>
+							<td> ${tempPrescription.presStrength} </td>
+							<td> ${tempPrescription.presDosage} </td>
+							
+							<td> 
+								<a href = "${updateLink}">Update</a>|
+								<a href = "${viewLink}">View</a> |
+								<a href = "${deleteLink}"
+								onclick="if (!(confirm('Are you sure you want to delete this patient?'))) return false">
+								Delete</a>
+							 </td>
 					</tr>
 				</c:forEach>
 			</table>
