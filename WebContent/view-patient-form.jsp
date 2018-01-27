@@ -18,44 +18,54 @@
 <body>
 
 <div id ="wrapper">
-		<div id="header">
-			<h2>Patient Medical History</h2>
-		</div>
+		<!-- div id="header"-->
+			<div class="container">
+				<div class="row">
+					<div class="col"></div>
+					
+					<div id="header" class="col-5"><h2>Patient Medical History</h2></div>
+					<div class="col"></div>
+				</div>
+			</div>
+		<!-- /div-->
 	
 	
-	<div id="container">
-	
-		<h3>Patient: ${THE_PATIENT.firstName } ${THE_PATIENT.middleName } ${THE_PATIENT.lastName } </h3>
-		<h4>List of Medications</h5>
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-5">
+				<h3>Patient: Selected Patient Name Go Here ${PATIENT_LIST.firstName } ${PATIENT_LIST.middleName } ${PATIENT_LIST.lastName } </h3>
+		<caption>List of Medications</caption>
 		
-			<table >
+			<table class="table table-sm table-bordered table-striped">
 				<tr>
-					<th>Prescription Name</th>
-					<th>Strength</th>
-					<th>Dosage</th>
-					<th>Action</th>
+					<th scope="col">Prescription Name</th>
+					<th scope="col">Strength</th>
+					<th scope="col">Dosage</th>
+					<th scope="col">Action</th>
 					
 				</tr>
 				
 				<c:forEach var="tempPrescription" items="${PRESCRIPTION_LIST}">
+				<tbody>
 					<tr>
 					
-						<!-- set up an update link for each patient--->
+						<!-- set up an update link for each prescription--->
 						<c:url var ="updateLink" value = "PrescriptionControllerServlet">
 							<c:param name="command" value="LOAD"/>
-							<c:param name="patientId" value="${tempPrescription.presId}" />
+							<c:param name="prescriptionId" value="${tempPrescription.presId}" />
 						</c:url>
 						
-						<!-- set up a view link for each patient--->
+						<!-- set up a view link for each prescription--->
 						<c:url var ="viewLink" value = "PrescriptionControllerServlet">
 							<c:param name="command" value="UPDATE_PRES"/>
-							<c:param name="patientId" value="${tempPrescription.presId}" />
+							<c:param name="prescriptionId" value="${tempPrescription.presId}" />
 						</c:url>
 						
-						<!-- set up a link to delete a patient -->
+						<!-- set up a link to delete a prescription -->
 						<c:url var ="deleteLink" value = "PrescriptionControllerServlet">
 							<c:param name="command" value="DELETE"/>
-							<c:param name="patientId" value="${tempPrescription.presId}" />
+							<c:param name="prescriptionId" value="${tempPrescription.presId}" />
 						</c:url>
 						
 							<td> ${tempPrescription.presName} </td>
@@ -70,18 +80,23 @@
 								Delete</a>
 							 </td>
 					</tr>
+					</tbody>
 				</c:forEach>
 			</table>
 			<div>
-		<!-- Add new button: Add Patient -->
+		<!-- Add new button: Add Prescription -->
 			<input type="button" value = "Add Prescription"
 					onclick="window.location.href='add-patient-form.jsp'; return false;"
 					class="add-patient-button"/>  <!-- -Style -->
 			</div>
 		<div style="clear:both;"></div>
 		<p> <a href = "PatientControllerServlet">Back to the List</a></p>
+			</div>
+			<div class="col"></div>
+		
+			
+		</div>
 	</div>
-	
 </div>
 
 

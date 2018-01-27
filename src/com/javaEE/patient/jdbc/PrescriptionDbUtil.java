@@ -53,8 +53,8 @@ private  DataSource dataSource;
 			
 			//retrieve data from result set row
 			while (myRs.next()){
-				patient_id = myRs.getInt("medications.patient_id");
-				if (patientId==patient_id) {
+				//patient_id = myRs.getInt("medications.patient_id");
+				if (patientId==myRs.getInt("medications.patient_id")) {
 					String presName = myRs.getString("medication_name");
 					String presStrength = myRs.getString("strength");
 					String presDosage = myRs.getString("dosage");

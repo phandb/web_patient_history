@@ -18,28 +18,36 @@
 
 <body>
 	<div id ="wrapper">
-		<div id="header">
-			<h2>Patient Medical History</h2>
-		</div>
+		<div class="container">
+				<div class="row">
+					<div class="col"></div>
+					
+					<div id="header" class="col-5"><h2>Patient Medical History</h2></div>
+					<div class="col"></div>
+				</div>
+			</div>
 	</div>
 	
-	<div id="container">
-		<div id="content">
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-5">
 		
 			<!-- Add new button: Add Patient -->
 			<input type="button" value = "Add Patient"
 					onclick="window.location.href='add-patient-form.jsp'; return false;"
 					class="add-patient-button"/>  <!-- -Style -->
-			<table class="">
+			<table class="table table-sm table-bordered table-striped">
 				<tr>
-					<th>First Name</th>
-					<th>Middle Name</th>
-					<th>Last Name</th>
-					<th>Action</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Middle Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Action</th>
 					
 				</tr>
 				
 				<c:forEach var="tempPatient" items="${PATIENT_LIST}">
+				<tbody>
 					<tr>
 					<!-- set up an update link for each patient--->
 					<c:url var ="updateLink" value = "PatientControllerServlet">
@@ -70,11 +78,16 @@
 							Delete</a>
 						 </td>
 					</tr>
+					</tbody>
 				</c:forEach>
 			</table>
 		</div>
+		
+			<div class="col"></div>
+		</div>
+			
+		</div>
 	
-	</div>
 
 </body>
 
