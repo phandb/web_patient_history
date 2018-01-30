@@ -22,7 +22,7 @@
 				<div class="row">
 					<div class="col"></div>
 					
-					<div id="header" class="col-5"><h2>Patient Medical History</h2></div>
+					<div id="header" class="col-5"><h2>Patient Medical Management</h2></div>
 					<div class="col"></div>
 				</div>
 			</div>

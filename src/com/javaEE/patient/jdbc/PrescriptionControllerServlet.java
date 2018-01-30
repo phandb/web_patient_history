@@ -77,9 +77,11 @@ public class PrescriptionControllerServlet extends HttpServlet {
 
 		//get prescription from db util
 		List<Prescriptions> prescriptions = prescriptionDbUtil.getPrescription(thePatientId);
+		//Patient selectedPatient = new Patient();
 		
 		//add prescription to the request
 		request.setAttribute("PRESCRIPTION_LIST",  prescriptions);
+		//String selectedFirstName = (String)request.getSession().getAttribute("SELECTED_PATIENT");
 		
 		//send to JSP page (view)
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view-patient-form.jsp");

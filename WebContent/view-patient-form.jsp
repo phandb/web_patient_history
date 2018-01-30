@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
+<%@ page language="java" import="java.util.*" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -23,7 +25,7 @@
 				<div class="row">
 					<div class="col"></div>
 					
-					<div id="header" class="col-5"><h2>Patient Medical History</h2></div>
+					<div id="header" class="col-5"><h2>Patient Medical Management</h2></div>
 					<div class="col"></div>
 				</div>
 			</div>
@@ -34,9 +36,17 @@
 		<div class="row">
 			<div class="col"></div>
 			<div class="col-5">
-				<h3>Patient: Selected Patient Name Go Here ${PATIENT_LIST.firstName } ${PATIENT_LIST.middleName } ${PATIENT_LIST.lastName } </h3>
-		<caption>List of Medications</caption>
-		
+			<c:set var="selectedPatient" value="${PRESCRIPTION_LIST.get(0)}"></c:set>
+			<h4>Patient:  ${selectedPatient.patientName }</h4>	
+			<c:choose>
+			<c:when test="${selectedPatient = null }">
+				<h4>No prescription for this patient</h4>
+			</c:when >
+			<c:otherwise >
+				
+			
+				
+			<h4>List of Medications </h4>
 			<table class="table table-sm table-bordered table-striped">
 				<tr>
 					<th scope="col">Prescription Name</th>
@@ -67,7 +77,7 @@
 							<c:param name="command" value="DELETE"/>
 							<c:param name="prescriptionId" value="${tempPrescription.presId}" />
 						</c:url>
-						
+							
 							<td> ${tempPrescription.presName} </td>
 							<td> ${tempPrescription.presStrength} </td>
 							<td> ${tempPrescription.presDosage} </td>
@@ -76,19 +86,25 @@
 								<a href = "${updateLink}">Update</a>|
 								<a href = "${viewLink}">View</a> |
 								<a href = "${deleteLink}"
-								onclick="if (!(confirm('Are you sure you want to delete this patient?'))) return false">
+								onclick="if (!(confirm('Are you sure you want to delete this medication?'))) return false">
 								Delete</a>
 							 </td>
 					</tr>
 					</tbody>
+					
 				</c:forEach>
 			</table>
+			</c:otherwise>
+			</c:choose>
 			<div>
 		<!-- Add new button: Add Prescription -->
 			<input type="button" value = "Add Prescription"
 					onclick="window.location.href='add-patient-form.jsp'; return false;"
 					class="add-patient-button"/>  <!-- -Style -->
 			</div>
+			
+		<!-- -End of prescription table--------->
+		
 		<div style="clear:both;"></div>
 		<p> <a href = "PatientControllerServlet">Back to the List</a></p>
 			</div>

@@ -45,6 +45,9 @@ public class Patient {
 		this.gender = gender;
 		this.birthDate = birthDate;
 	}
+	public Patient() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getId() {
 		return id;
 	}

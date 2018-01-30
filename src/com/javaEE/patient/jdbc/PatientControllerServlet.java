@@ -158,7 +158,8 @@ public class PatientControllerServlet extends HttpServlet {
 		List<Patient> patients = patientDbUtil.getPatients();
 		
 		//add patients to the request
-		request.setAttribute("PATIENT_LIST", patients);
+		//request.setAttribute("PATIENT_LIST", patients);
+		request.getSession().setAttribute("PATIENT_LIST", patients);  //This will send to other servlets
 		
 		//send to JSP page view
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-patients.jsp");

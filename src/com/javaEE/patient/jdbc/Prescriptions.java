@@ -8,6 +8,7 @@ public class Prescriptions {
 	private String presName;
 	private String presStrength;
 	private String presDosage;
+	private String patientName;
 	/**
 	 * @param presId
 	 * @param patientId
@@ -15,10 +16,11 @@ public class Prescriptions {
 	 * @param presStrength
 	 * @param presDosage
 	 */
-	public Prescriptions(int presId, int patientId, String presName, String presStrength, String presDosage) {
+	public Prescriptions(int presId, int patientId, String patientName, String presName, String presStrength, String presDosage) {
 		//super();
 		this.presId = presId;
 		this.patientId = patientId;
+		this.patientName = patientName;
 		this.presName = presName;
 		this.presStrength = presStrength;
 		this.presDosage = presDosage;
@@ -29,12 +31,14 @@ public class Prescriptions {
 	 * @param presStrength
 	 * @param presDosage
 	 */
-	public Prescriptions(int patientId, String presName, String presStrength, String presDosage) {
+	public Prescriptions(int patientId, String patientName, String presName, String presStrength, String presDosage) {
 		//super();
 		this.patientId = patientId;
+		this.patientName = patientName;
 		this.presName = presName;
 		this.presStrength = presStrength;
 		this.presDosage = presDosage;
+		
 	}
 	public int getPresId() {
 		return presId;
@@ -47,6 +51,13 @@ public class Prescriptions {
 	}
 	public void setPatientId(int patientId) {
 		this.patientId = patientId;
+	}
+	
+	public String getPatientName() {
+		return patientName;
+	}
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
 	}
 	public String getPresName() {
 		return presName;
@@ -66,9 +77,6 @@ public class Prescriptions {
 	public void setPresDosage(String presDosage) {
 		this.presDosage = presDosage;
 	}
-	public static List<Prescriptions> getPrescriptions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 }

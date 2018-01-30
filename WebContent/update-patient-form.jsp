@@ -18,7 +18,7 @@
 
 <div id ="wrapper">
 		<div id="header">
-			<h2>Patient Medical History</h2>
+			<h2>Patient Medical Management</h2>
 		</div>
 	
 	
