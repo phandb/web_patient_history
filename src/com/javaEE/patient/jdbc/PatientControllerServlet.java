@@ -132,6 +132,7 @@ public class PatientControllerServlet extends HttpServlet {
 		
 	}
 	private void addPatient(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//This method is called when add button in add-patient-form is clicked
 		// read patient info from form data
 		String firstName = request.getParameter("firstName");
 		String middleName = request.getParameter("middleName");

@@ -40,6 +40,34 @@ public class Prescriptions {
 		this.presDosage = presDosage;
 		
 	}
+	
+	
+	/**
+	 * @param presId
+	 * @param presName
+	 * @param presStrength
+	 * @param presDosage
+	 */
+	public Prescriptions(int patientId, int presId, String presName, String presStrength, String presDosage) {
+		//super();
+		this.patientId = patientId;
+		this.presId = presId;
+		this.presName = presName;
+		this.presStrength = presStrength;
+		this.presDosage = presDosage;
+	}
+	
+	/**
+	 * @param presName
+	 * @param presStrength
+	 * @param presDosage
+	 */
+	public Prescriptions(int patientId, String presName, String presStrength, String presDosage) {
+		//super();
+		this.presName = presName;
+		this.presStrength = presStrength;
+		this.presDosage = presDosage;
+	}
 	public int getPresId() {
 		return presId;
 	}

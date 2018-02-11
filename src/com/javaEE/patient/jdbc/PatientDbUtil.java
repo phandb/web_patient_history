@@ -117,6 +117,8 @@ public class PatientDbUtil {
 	}
 
 	public Patient getPatient(String thePatientId) throws Exception{
+		
+		//This method to load or get specific patient data for update  
 		Patient thePatient = null;
 		
 		Connection myConn = null;
