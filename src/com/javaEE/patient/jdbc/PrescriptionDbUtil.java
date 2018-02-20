@@ -11,14 +11,15 @@ import java.util.List;
 import javax.sql.DataSource;
 
 public class PrescriptionDbUtil {
-private  DataSource dataSource;
-	
+	private  DataSource dataSource;
+	public int patientId;
 	public PrescriptionDbUtil(DataSource theDataSource) {
 		dataSource = theDataSource;
 	}
 	
-	
+/***********************************************************************************************/	
 	public List<Prescriptions> getPrescriptionList(String thePatientId) throws Exception {
+		
 		//Create a list of Prescription
 		List<Prescriptions> prescriptions = new ArrayList();
 		
@@ -26,35 +27,34 @@ private  DataSource dataSource;
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		int patientId;
-		int patient_id;
+		//int patient_id;
 		try {
-			//convert student id to int
-			patientId = Integer.parseInt(thePatientId);
+			
 			
 			//get connection to database
 			myConn = dataSource.getConnection();
 			
-			//create sql statement that load all medications for selected patient
+			//create sql statement that load all medications for all patients
 			String sql = "SELECT *   "
 							+ " FROM medications "
 							+ " INNER JOIN patients "
 							+ " ON (medications.patient_id = patients.patient_id) ";
-			//medications.patient_id, medication_name, strength, dosage
-			
+					
 			
 			//create prepared statement
 			myStmt = myConn.prepareStatement(sql);
 			
-			//set params
-			 // myStmt.setInt(1, patientId);
-								
+			
 			//execute statement
 			 
 			myRs = myStmt.executeQuery(sql);
 			
 			//retrieve data from result set row
+			//convert patient id to int
+			patientId = Integer.parseInt(thePatientId);
+			this.patientId = patientId;
 			while (myRs.next()){
-				//patient_id = myRs.getInt("medications.patient_id");
+				//Get medications for selected patient only
 				if (patientId==myRs.getInt("medications.patient_id")) {
 					int presId = myRs.getInt("medication_id");
 					String presName = myRs.getString("medication_name");
@@ -72,8 +72,6 @@ private  DataSource dataSource;
 				}
 			}
 			 
-				
-				 
 			
 				//throw new Exception("No Prescription for patient: "+ patientId);
 				 return prescriptions;
@@ -84,7 +82,7 @@ private  DataSource dataSource;
 			close(myConn, myStmt, myRs);
 		}
 	}
-
+/*********************************************************************************/
 	private  void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 		try {
 			if (myRs !=null) {
@@ -102,12 +100,12 @@ private  DataSource dataSource;
 		}
 	}
 
-
-	public void deletePrescription(String thePrescriptionId) throws Exception {
+/************************************************************************************/
+	public void deleteSelectedPrescription(String thePrescriptionId) throws Exception {
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		try {
-			//convert prescription id to int
+			//convert string prescription id to int
 			int pres_id = Integer.parseInt(thePrescriptionId);
 			
 			//get connection to database
@@ -134,7 +132,7 @@ private  DataSource dataSource;
 		
 	}
 
-
+/*************************************************************************************/
 	public void addPrescription(Prescriptions thePrescription) throws Exception{
 		Connection myConn = null;
 		PreparedStatement  myStmt = null;
@@ -145,7 +143,9 @@ private  DataSource dataSource;
 			//create SQL insert statement
 			String sql = "INSERT INTO medications "
 					+ "(medication_name, strength, dosage, patient_id) "
-					+ " VALUES (?, ?, ?, ?)";
+					+ "VALUES (?, ?, ?, ?)";
+			
+		      
 			
 			myStmt = myConn.prepareStatement(sql);
 			
@@ -166,7 +166,7 @@ private  DataSource dataSource;
 		
 	}
 
-
+/***************************************************************************************************************/
 	public Prescriptions getPrescription(String thePrescriptionId, String selectedPatientId) throws Exception {
 		//This method to load or get specific prescription data for update 
 		//Define a prescription object
@@ -223,7 +223,7 @@ private  DataSource dataSource;
 		}
 	}
 
-
+/***************************************************************************************************/
 	public void updatePrescription(Prescriptions thePrescription) throws Exception {
 		//This method will update specific medication respect to data from the update prescription form
 
@@ -258,6 +258,6 @@ private  DataSource dataSource;
 
 	}
 	
-
+/*********************************************************************************************/
 
 }

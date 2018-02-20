@@ -38,7 +38,7 @@
 			<div class="col-5">
 			<c:set var="selectedPatient" value="${PRESCRIPTION_LIST.get(0)}" scope="session"></c:set>
 			<h4>Patient:  ${selectedPatient.patientName }</h4>	
-			<h4>patient_ID: ${selectedPatient.patientId }</h4>
+			<!-- h4>patient_ID: ${selectedPatient.patientId }</h4  --->
 			<c:choose>
 			<c:when test="${selectedPatient = null }">
 				<h4>No prescription for this patient</h4>
@@ -55,8 +55,8 @@
 			<h4>List of Medications </h4>
 			<table class="table table-sm table-bordered table-striped">
 				<tr>
-					<th scope="col">Patient ID</th>
-					<th scope="col">Pres ID</th>
+					<!-- h scope="col">Patient ID</th>
+					<th scope="col">Pres ID</th  --->
 					<th scope="col">Prescription Name</th>
 					<th scope="col">Strength</th>
 					<th scope="col">Dosage</th>
@@ -86,9 +86,12 @@
 						<c:url var ="deleteLink" value = "PrescriptionControllerServlet">
 							<c:param name="command" value="DELETE"/>
 							<c:param name="prescriptionId" value="${tempPrescription.presId}" />
+							<c:param name="selectedPatientId" value="${tempPrescription.patientId}"/>
 						</c:url>
+						<!-- - 
 							<td> ${tempPrescription.patientId} </td>
-							<td> ${tempPrescription.presId} </td>
+							<td> ${tempPrescription.presId} </td>  
+							-->
 							<td> ${tempPrescription.presName} </td>
 							<td> ${tempPrescription.presStrength} </td>
 							<td> ${tempPrescription.presDosage} </td>

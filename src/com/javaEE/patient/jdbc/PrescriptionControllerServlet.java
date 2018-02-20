@@ -20,7 +20,8 @@ public class PrescriptionControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private PrescriptionDbUtil prescriptionDbUtil;
-	public String selectedPatientId;
+	public String selected_PatientId;
+	
 	@Resource(name="jdbc/web_patient_history")
 	private DataSource dataSource;
 	
@@ -76,7 +77,7 @@ public class PrescriptionControllerServlet extends HttpServlet {
 		
 	}
 		
-		
+	/*******************************************************************************************************************/	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		try {
 			//read the command ADD parameter
@@ -97,16 +98,17 @@ public class PrescriptionControllerServlet extends HttpServlet {
 		}
 	}
 		
-	
+/*****************************************************************************************************************/	
 
 	private void addPrescription(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//read data from add-prescription form for specified patient
 		//use request.getParameter(String s) to read data form
 		//Make sure patient ID is included
+		int patient_id = Integer.parseInt(selected_PatientId);
 		String presName = request.getParameter("presName");
 		String presStrength = request.getParameter("presStrength");
 		String presDosage = request.getParameter("presDosage");
-		int patient_id = Integer.parseInt(request.getParameter("patient_Id"));
+		
 		
 		//create new prescription object
 		Prescriptions thePrescription = new Prescriptions(patient_id, presName, presStrength, presDosage);
@@ -119,19 +121,20 @@ public class PrescriptionControllerServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath() + "/PrescriptionControllerServlet?command=VIEW");
 		
 	}
-
+/*********************************************************************************************************************/
 	private void deletePrescriptions(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// read the prescription id from the form data
-		String thePrescriptionId = request.getParameter("presId");
-				
+		String thePresId = request.getParameter("prescriptionId");
+		selected_PatientId = request.getParameter("selectedPatientId");		
+		
 		//delete prescreiption from the database
-		prescriptionDbUtil.deletePrescription(thePrescriptionId);
+		prescriptionDbUtil.deleteSelectedPrescription(thePresId);
 				
 		//send them back to the list of prescription page
 		listPrescriptions(request, response);
 		
 	}
-
+/**********************************************************************************************************************/
 	private void updatePrescriptions(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//this method is trigger by update button in prescription update form
 		// read prescription info from the form data
@@ -153,7 +156,7 @@ public class PrescriptionControllerServlet extends HttpServlet {
 				
 		
 	}
-
+/*******************************************************************************************************************/
 	private void loadPresciptions(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		//read prescription id from form data
 		String thePrescriptionId = request.getParameter("prescriptionId");
@@ -170,25 +173,39 @@ public class PrescriptionControllerServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 		
 	}
-
+/**********************************************************************************************************************/
 	private void listPrescriptions(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
+		String patientID = "";
 		//read patient id from form data
-		String selectedPatientId = request.getParameter("patientId");
-		this.selectedPatientId=selectedPatientId;
+		 String selectedPatientId = request.getParameter("patientId");
+		//pass the patient ID to global for later use
+		 
+		 if (selectedPatientId != null) {
+			 patientID = selectedPatientId;
+			 selected_PatientId = selectedPatientId;
+		}else {
+			 patientID = selected_PatientId;
+		 }
+		//selected_PatientId=selectedPatientId;
+		
 		//get prescription from db util
-		List<Prescriptions> prescriptions = prescriptionDbUtil.getPrescriptionList(selectedPatientId);
+		List<Prescriptions> prescriptions = prescriptionDbUtil.getPrescriptionList(patientID);
 		//Patient selectedPatient = new Patient();
 		
 		//add prescription to the request
 		request.setAttribute("PRESCRIPTION_LIST",  prescriptions);
-		//request.session.setAttribute("PRESCRIPTION_LIST", prescriptions);
+		
 		//String selectedFirstName = (String)request.getSession().getAttribute("SELECTED_PATIENT");
 		
 		//send to JSP page (view)
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view-patient-form.jsp");
 		dispatcher.forward(request, response);
 		
+		
+		request.setAttribute("SelectedPatientId", patientID);
+		request.getRequestDispatcher("/add-prescription-form.jsp").forward(request, response);
+		
+		
 	}
-
+/*******************************************************************************************************************/
 }

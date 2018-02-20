@@ -64,10 +64,14 @@ public class Prescriptions {
 	 */
 	public Prescriptions(int patientId, String presName, String presStrength, String presDosage) {
 		//super();
+		this.patientId = patientId;
 		this.presName = presName;
 		this.presStrength = presStrength;
 		this.presDosage = presDosage;
 	}
+	
+	
+	
 	public int getPresId() {
 		return presId;
 	}

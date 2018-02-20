@@ -29,7 +29,18 @@
 			<input type="hidden" name="presId" value="${THE_PRESCRIPTION.presId }" />
 			<input type="hidden" name="patientId" value="${THE_PRESCRIPTION.patientId }" />
 			
-			
+				 <div class="form-group">
+			    <label for="inputPresName" class="col-sm-2 control-label">Prescription ID</label>
+			    <div class="col-sm-4">
+			      <input type="text" name ="presId" value ="${THE_PRESCRIPTION.presId }" class="form-control" >
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputPresName" class="col-sm-2 control-label">Patient ID</label>
+			    <div class="col-sm-4">
+			      <input type="text" name ="patient_id" value ="${THE_PRESCRIPTION.patientId }" class="form-control" id="inputPresName" >
+			    </div>
+			  </div>
 			  <div class="form-group">
 			    <label for="inputPresName" class="col-sm-2 control-label">Prescription Name</label>
 			    <div class="col-sm-4">

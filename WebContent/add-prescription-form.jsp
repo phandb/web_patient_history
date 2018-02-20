@@ -1,4 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
+<%
+	String stringPatientId = (String)request.getAttribute("SelectedPatientId");
+%>
 <!DOCTYPE html>
 
 <html>
@@ -23,13 +26,14 @@
 		</div>
 	
 	
-			<h4>Patient: <c:out value =" ${sessionScope.selectedPatient.patientName }"/></h4>	
-			<h4>patient_ID:  <c:out value =" ${sessionScope.selectedPatient.patientId }"/></h4>	
 	<div id="container">
 		<h3>Add Prescription</h3>
 		
 		<form class ="form-horizontal" action="PrescriptionControllerServlet" method="POST">
 			<input type="hidden" name="command" value="ADD" />
+			<input type="hidden" name="presId" value="${THE_PRESCRIPTION.presId }" />
+			<input type="hidden" name="patientId" value="${THE_PRESCRIPTION.patientId }" />
+			
 			
 			<div class="form-group">
 			
@@ -50,15 +54,17 @@
 			      <input type="text" name ="presDosage"  class="form-control" id="inputPresDosage" >
 			    </div>
 			  </div>
+			  <!-- - 
 			  <div class="form-group">
 			    <label for="inputPatientId" class="control-label col-sm-2">Patient ID</label>
 			    <div class="col-sm-4">
 			    
-			      <input type="text" name ="patient_Id"  value = "${THE_PRESCRIPTION.patientId }"  class="form-control" id="inputPatientId">
-			    </div>
+			      <input type="text" name ="patient_Id" value="${stringPatientId}"   class="form-control" id="inputPatientId">
+			    </div>   
 			  </div>
 			  
-			  
+			   -->
+			   
 			  <!-- div class="form-group">
 			      <label for="inputGender" class="col-sm-2">Gender</label>
 			      <div class="col-sm-6">
